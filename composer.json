@@ -1,0 +1,45 @@
+{
+    "name": "michaljurkowski/tg-pass",
+    "type": "library",
+    "description": ":package_description",
+    "keywords": [
+        "michaljurkowski",
+        "tg-pass"
+    ],
+    "homepage": "https://github.com/michaljurkowski/tg-pass",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Jurkowski",
+            "email": "jurkowskimichal86@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1",
+        "php" : "~5.5|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "scrutinizer/ocular": "~1.1",
+        "squizlabs/php_codesniffer": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MichalJurkowski\\TgPass\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MichalJurkowski\\TgPass\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
