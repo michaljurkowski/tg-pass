@@ -1,37 +1,10 @@
 <?php
 
-namespace App\Engine\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+namespace MichalJurkowski\TgPass\Engine\Models\Traits;
 
-use Auth;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use MichalJurkowski\TgPass\Engine\Models\Traits\PassUserTrait;
-
-class User extends Authenticatable
+trait PassUserTrait
 {
-    use PassUserTrait;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
     public function getIdByEmail($email) {
         return $this->where('email', $email)->value('id');
     }
@@ -81,17 +54,4 @@ class User extends Authenticatable
             ->select('pass_roles.name as role_name')
             ->value('role_name');
     }
-
-    // public function generateActivationToken($email) {
-    //     return sha1($email);
-    // }
-
-    // public function getByActivationToken($token) {
-    //     return $this->where('activation_token', $token)->first();
-    // }
-
-    // public function getStatusAttribute($value)
-    // {
-    //     return trans('user.status_'.$value);
-    // }
 }

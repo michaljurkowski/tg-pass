@@ -37,8 +37,7 @@ class TgPassServiceProvider extends ServiceProvider
             __DIR__.'/Engine/Models/PassPermission.php' => app_path('../app/Engine/Models/PassPermission.php'),
             __DIR__.'/Engine/Models/PassResource.php' => app_path('../app/Engine/Models/PassResource.php'),
             __DIR__.'/Engine/Models/PassRole.php' => app_path('../app/Engine/Models/PassRole.php'),
-            __DIR__.'/Engine/Models/PassUserRole.php' => app_path('../app/Engine/Models/PassUserRole.php'),
-            __DIR__.'/Engine/Models/User.php' => app_path('../app/Engine/Models/User.php')
+            __DIR__.'/Engine/Models/PassUserRole.php' => app_path('../app/Engine/Models/PassUserRole.php')
         ], 'engine');
 
 

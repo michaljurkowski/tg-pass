@@ -35,7 +35,19 @@ in database/seeds/DatabaseSeeder.php add:
         $this->call(PassPermissionsTableSeeder::class);
 ```
 
-than `php artisan migrate` and `php artisan db:seed`
+
+in user model use trait
+```
+    use MichalJurkowski\TgPass\Engine\Models\Traits\PassUserTrait;
+
+    class User
+        {
+        use PassUserTrait;
+```
+
+`composer dump-autoload`
+
+then `php artisan migrate` and `php artisan db:seed`
 
 ## Security
 
