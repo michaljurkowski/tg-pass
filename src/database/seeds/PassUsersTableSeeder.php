@@ -1,5 +1,7 @@
 <?php
 
+namespace MichalJurkowski\TgPass\database\seeds;
+
 use Illuminate\Database\Seeder;
 
 class PassUsersTableSeeder extends Seeder

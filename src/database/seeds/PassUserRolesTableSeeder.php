@@ -1,5 +1,7 @@
 <?php
 
+namespace MichalJurkowski\TgPass\database\seeds;
+
 use Illuminate\Database\Seeder;
 use App\Engine\Models\PassUserRole;
 use App\Engine\Models\PassRole;
