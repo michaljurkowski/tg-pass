@@ -26,14 +26,6 @@ class TgPassServiceProvider extends ServiceProvider
         ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/database/seeds/PassPermissionsTableSeeder.php' => app_path('../database/seeds/PassPermissionsTableSeeder.php'),
-            __DIR__.'/database/seeds/PassResourcesTableSeeder.php' => app_path('../database/seeds/PassResourcesTableSeeder.php'),
-            __DIR__.'/database/seeds/PassRolesTableSeeder.php' => app_path('../database/seeds/PassRolesTableSeeder.php'),
-            __DIR__.'/database/seeds/PassUserRolesTableSeeder.php' => app_path('../database/seeds/PassUserRolesTableSeeder.php'),
-            __DIR__.'/database/seeds/PassUsersTableSeeder.php' => app_path('../database/seeds/PassUsersTableSeeder.php')
-        ], 'seeds');
-
-        $this->publishes([
             __DIR__.'/Engine/Models/PassPermission.php' => app_path('../app/Engine/Models/PassPermission.php'),
             __DIR__.'/Engine/Models/PassResource.php' => app_path('../app/Engine/Models/PassResource.php'),
             __DIR__.'/Engine/Models/PassRole.php' => app_path('../app/Engine/Models/PassRole.php'),
