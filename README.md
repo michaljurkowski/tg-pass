@@ -29,11 +29,11 @@ in `config/tg_pass` uncomment or add your own roles and permissions
 in database/seeds/DatabaseSeeder.php add:
 
 ```
-        $this->call(MichalJurkowski\TgPass\Engine\Models\Traits\PassRolesTableSeeder::class);
-        $this->call(MichalJurkowski\TgPass\Engine\Models\Traits\PassUsersTableSeeder::class);
-        $this->call(MichalJurkowski\TgPass\Engine\Models\Traits\PassResourcesTableSeeder::class);
-        $this->call(MichalJurkowski\TgPass\Engine\Models\Traits\PassUserRolesTableSeeder::class);
-        $this->call(MichalJurkowski\TgPass\Engine\Models\Traits\PassPermissionsTableSeeder::class);
+        $this->call(MichalJurkowski\TgPass\database\seeds\PassRolesTableSeeder::class);
+        $this->call(MichalJurkowski\TgPass\database\seeds\PassUsersTableSeeder::class);
+        $this->call(MichalJurkowski\TgPass\database\seeds\PassResourcesTableSeeder::class);
+        $this->call(MichalJurkowski\TgPass\database\seeds\PassUserRolesTableSeeder::class);
+        $this->call(MichalJurkowski\TgPass\database\seeds\PassPermissionsTableSeeder::class);
 ```
 
 

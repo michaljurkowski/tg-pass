@@ -16,13 +16,13 @@ class PassUsersTableSeeder extends Seeder
         $users = config('tg_pass.users');
 
         foreach ($users as $user) {
-            $userExists = DB::table('users')
+            $userExists = \DB::table('users')
                 ->where('users.email', $user['email'])
                 ->count();
 
             if ($userExists == 0) {
                 $user['password'] = bcrypt($user['password']);
-                DB::table('users')->insert($user);
+                \DB::table('users')->insert($user);
                 $this->command->info('New user ' . $user['name'] . ' was added!');
             }
         }
