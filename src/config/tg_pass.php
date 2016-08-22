@@ -1,6 +1,6 @@
 <?php
 
-    // define('ROLE_NAME','RoleName');
+    // define('ROLE_NAME') ?: define('ROLE_NAME','RoleName');
 
 return [
     'users' => [
