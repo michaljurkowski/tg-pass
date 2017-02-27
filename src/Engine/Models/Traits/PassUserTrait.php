@@ -1,15 +1,19 @@
 <?php
 
-
 namespace MichalJurkowski\TgPass\Engine\Models\Traits;
+
+use Session;
+use Auth;
 
 trait PassUserTrait
 {
-    public function getIdByEmail($email) {
+    public function getIdByEmail($email)
+    {
         return $this->where('email', $email)->value('id');
     }
 
-    public function isSuperAdmin() {
+    public function isSuperAdmin()
+    {
         $user = Auth::user();
         $result = $user
             ?  $this->getUserRole($user->id) == 'SuperAdmin'
@@ -18,28 +22,40 @@ trait PassUserTrait
         return $result;
     }
 
-    public function can($ability, $attributes = []) {
+    public function can($ability, $attributes = [])
+    {
         $user = Auth::user();
-        $result = $user
-            ? $this->userHasAbility($ability, $user->id)
-            : false;
+
+        $abilityList = $this->userHasAbility($user->id);
+
+        $result = in_array($ability, $abilityList);
 
         return $result;
     }
 
-    private function userHasAbility($ability, $userId) {
-        $count = $this
+    private function userHasAbility($userId)
+    {
+        if(Session::has('tg_pass.ability_list')) {
+            return Session::get('tg_pass.ability_list');
+        }
+
+        $abilityList = $this
             ->leftJoin('pass_user_roles', 'users.id', '=', 'pass_user_roles.user_id')
             ->leftJoin('pass_permissions', 'pass_permissions.role_id', '=', 'pass_user_roles.role_id')
             ->leftJoin('pass_resources', 'pass_resources.id', '=', 'pass_permissions.resource_id')
             ->where('users.id', $userId)
-            ->where('pass_resources.name', $ability)
-            ->count();
+            ->select('pass_resources.name')
+            ->pluck('name')
+            ->toArray();
 
-        return $count != 0;
+        Session::put('tg_pass.ability_list', $abilityList);
+
+        return $abilityList;
     }
 
-    public function getUserRole($userId = null) {
+    public function getUserRole($userId = null)
+    {
+
         if (!$userId) {
             if ($this->id)
                 $userId = $this->id;
@@ -47,11 +63,19 @@ trait PassUserTrait
                 return 'guest';
         }
 
-        return $this
+        if(Session::has('tg_pass.role_name')) {
+            return Session::get('tg_pass.role_name');
+        }
+
+        $roleName =  $this
             ->leftJoin('pass_user_roles', 'users.id', '=', 'pass_user_roles.user_id')
             ->leftJoin('pass_roles', 'pass_roles.id', '=', 'pass_user_roles.role_id')
             ->where('users.id', $userId)
             ->select('pass_roles.name as role_name')
             ->value('role_name');
+
+        Session::put('tg_pass.role_name', $roleName);
+
+        return $roleName;
     }
 }
